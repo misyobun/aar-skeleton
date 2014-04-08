@@ -1,0 +1,76 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.9.+'
+    }
+}
+apply plugin: 'android-library'
+apply plugin: 'maven'
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion '19.0.3'
+	defaultConfig {
+        minSdkVersion 8
+        targetSdkVersion 17
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile 'マニフェストのパス'
+            java.srcDirs = ['javaソースのパス']
+            res.srcDirs = ['リソースのパス']
+        }
+    }
+}
+
+dependencies {
+    compile 'com.android.support:gridlayout-v7:19.0.1'
+    compile 'com.android.support:support-v4:19.0.1'
+    compile 'com.android.support:appcompat-v7:19.0.1'
+}
+
+group = 'グループ名'
+version = 'バージョン'
+def artifactId = 'アーティファクト名'
+
+def repositoryUrl
+if (has('repoDir')) {
+    repositoryUrl = "file://$repoDir"
+} else {
+    repositoryUrl = "file://$buildDir/repo/"
+}
+
+afterEvaluate { project ->
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                repository(url: repositoryUrl)
+                pom.artifactId = artifactId
+            }
+        }
+    }
+
+    task androidJavadocs(type: Javadoc) {
+        source = android.sourceSets.main.allJava
+    }
+    task androidJavadocsJar(type: Jar) {
+        classifier = 'javadoc'
+        from androidJavadocs.destinationDir
+    }
+    task androidSourcesJar(type: Jar) {
+        classifier = 'sources'
+        from android.sourceSets.main.allSource
+    }
+
+    artifacts {
+        archives androidSourcesJar
+        archives androidJavadocsJar
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.9'
+}
