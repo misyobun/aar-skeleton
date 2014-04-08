@@ -10,7 +10,7 @@ Volleyを例に使う
 
 ## スケルトンをダウンロードする
 ```
-$ wget http://dalvik.in/aar/clone.sh | bash
+$ wget -O - http://dalvik.in/aar/clone.sh | bash
 $ mv aar-skeleton volleyaar
 ```
 ## 対象ライブラリをクローンする
