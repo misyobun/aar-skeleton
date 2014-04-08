@@ -1,6 +1,6 @@
-wget http://dalvik.in/aar/aar-skelton.zip
+wget http://dalvik.in/aar/aar-skeleton.zip
 unzip aar-skeleton.zip
-rm aar-skelton.zip
+rm aar-skeleton.zip
 rm __MACOSX
 cd aar-skeleton
 chmod +x build-gh-pages.sh
