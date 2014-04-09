@@ -9,12 +9,12 @@ Volleyを例に使う
 
 
 ## スケルトンをダウンロードする
-```
+```sh
 $ wget -O - http://dalvik.in/aar/clone.sh | bash
 $ mv aar-skeleton volleyaar
 ```
 ## 対象ライブラリをクローンする
-```
+```sh
 $ cd volleyaar
 $ git submodule add https://android.googlesource.com/platform/frameworks/volley
 ```
@@ -40,7 +40,7 @@ def artifactId = 'library'
 ```
 
 ## pushする
-```
+```sh
 $ git add .
 $ git commit -m "init commit"
 $ git remote add origin https://github.com/misyobun/volley-aar.git
@@ -48,6 +48,6 @@ $ git push origin master
 ```
 
 ## build する
-```
+```sh
 $ /build-gh-pages.sh
 ```
