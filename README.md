@@ -51,3 +51,16 @@ $ git push origin master
 ```sh
 $ /build-gh-pages.sh
 ```
+
+## aarを参照する
+
+```
+repositories {
+    maven { url 'http://misyobun.github.io/volley-aar/' }
+}
+
+dependencies {
+    compile 'jp.co.misyobun.lib.volley:library:0.0.1'
+}
+```
+
